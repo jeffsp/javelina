@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html>
+<head>
+
+    <title>Javelina CBIR</title>
+
+    <style>
+    body {
+        background: url("{{ url_for('static', filename='home.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+    }
+    </style>
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+    <script type=text/javascript> var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+
+    <script>
+    $(function() {
+        $( "#nav_tabs" ).accordion({
+            collapsible: true,
+            heightStyle: "content"
+        });
+    });
+    </script>
+
+</head>
+
+<body>
+
+    <div id="footer"> Copyright (C) Zetamon Software 2014 </div>
+
+    {% block body %}{% endblock %}
+
+</body>
+</html>
+
+{# vim: set syntax=jinja : #}

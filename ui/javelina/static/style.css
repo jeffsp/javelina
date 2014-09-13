@@ -1,0 +1,35 @@
+html, body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px
+    font-family:"Verdana";
+}
+#footer {
+    position:fixed;
+    bottom:0;
+    width:100%;
+    text-align:center;
+    padding:5px;
+    background-color:transparent;
+    z-index: 2;
+    font-size:small;
+}
+.panel {
+    z-index: 2;
+    background-color: #FFFFFF;
+    padding: 5px;
+    border: 1px solid #999;
+    font-size:small;
+    font-family:"Verdana";
+}
+#nav_tabs {
+    position: fixed;
+    width: 400px;
+    top: 5px;
+    left: 5px;
+    z-index: 2;
+    background-color: #FFFFFF;
+    padding: 5px;
+    border: 1px solid #999;
+    font-size:small;
+}
