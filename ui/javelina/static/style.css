@@ -24,7 +24,7 @@ html, body {
 }
 #nav_tabs {
     position: fixed;
-    width: 400px;
+    width: 600px;
     top: 5px;
     left: 5px;
     z-index: 2;
@@ -32,4 +32,15 @@ html, body {
     padding: 5px;
     border: 1px solid #999;
     font-size:small;
+}
+.flash {
+    width:100%;
+    position:fixed;
+    top:0;
+    padding: 0.5em;
+    border: 0px solid #aacbe2;
+    text-align:center;
+    z-index: 2;
+    font-size:small;
+    color: #ffffff;
 }

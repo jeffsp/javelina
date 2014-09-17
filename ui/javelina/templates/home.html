@@ -4,8 +4,20 @@
     <div class="panel" id="nav_tabs">
         <h3>Images</h3>
         <div>
-            <p>
-            Good luck!
+            <form action="" method=post enctype=multipart/form-data>
+            <br>
+            <input type=file name=file>
+            <br>
+            <input type=submit value="Upload Image">
+            </form>
+            <br>
+            <ul class=images>
+            {% for img in images %}
+                  <img src="/static/images/{{ img }}" width="100" title="{{ img }}">
+            {% else %}
+            <em>No images have been uploaded.</em>
+            {% endfor %}
+            </ul>
         </div>
         <h3>About</h3>
         <div>
