@@ -33,23 +33,27 @@ int main (int argc, char **argv)
 
         // find faces
         faces faces = fd.get_faces (img);
+
+        // print face and eye rects
         for (auto i : faces)
         {
             // face rect
             cout
-                << ' ' << i.get_rect ().x
-                << ' ' << i.get_rect ().y
-                << ' ' << i.get_rect ().width
-                << ' ' << i.get_rect ().height;
+                << "face"
+                << " " << i.get_rect ().x
+                << " " << i.get_rect ().y
+                << " " << i.get_rect ().x + i.get_rect ().width
+                << " " << i.get_rect ().y + i.get_rect ().height
+                << endl;
             // eye rects
             for (auto j : i.get_eyes ())
                 cout
-                    << ' ' << j.x
-                    << ' ' << j.y
-                    << ' ' << j.width
-                    << ' ' << j.height;
-
-            cout << endl;
+                    << "eye"
+                    << " " << i.get_rect ().x + j.x
+                    << " " << i.get_rect ().y + j.y
+                    << " " << i.get_rect ().x + j.x + j.width
+                    << " " << i.get_rect ().y + j.y + j.height
+                    << endl;
         }
 
         return 0;
