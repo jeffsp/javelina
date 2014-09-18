@@ -5,12 +5,12 @@
 /// @date 2013-12-18
 
 #include "face_detection.h"
-
+#include "version.h"
 #include "opencv2/highgui/highgui.hpp"
 
 using namespace std;
 using namespace cv;
-using namespace face_detection;
+using namespace javelina::face_detection;
 
 const char *usage = "face_detection <fn.png|fn.jpg>";
 
@@ -18,6 +18,7 @@ int main (int argc, char **argv)
 {
     try
     {
+        clog << "face detection version " << version << endl;
         if (argc != 2)
             throw runtime_error (usage);
 
