@@ -5,10 +5,15 @@
 # @date 2014-05-10
 
 BUILD=debug
+INSTALL_DIR=/usr/local/bin
 
-.PHONY: waf run fd
+.PHONY: waf run fd check install uninstall
 
-waf:
+waf: version.h
+	waf
+
+version.h: face_detection.cc face_detection.h
+	@echo "Creating version.h..."
 	@echo "#include <string>" > version.h
 	@echo "namespace javelina {" >> version.h
 	@echo "namespace face_detection {" >> version.h
@@ -17,16 +22,20 @@ waf:
 	@echo "\");" >> version.h
 	@echo "}" >> version.h
 	@echo "}" >> version.h
-	waf
 
-run: fd
+run: check
 
 fd: waf
 	for i in $$( find db/*.jpg ); do  \
-	./build/$(BUILD)/face_detection $$i; \
+		./build/$(BUILD)/face_detection $$i; \
 	done
 
-INSTALL_DIR=/usr/local/bin
+check:
+	for i in $$( find db/*.jpg ); do  \
+		./draw_faces.py $$i tmp.png; \
+		display tmp.png; \
+		rm tmp.png; \
+	done
 
 install: waf
 	sudo install -s -v \
