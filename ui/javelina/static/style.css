@@ -1,7 +1,4 @@
 html, body {
-    height: 100%;
-    margin: 0px;
-    padding: 0px
     font-family:"Verdana";
 }
 #footer {
@@ -14,25 +11,6 @@ html, body {
     z-index: 2;
     font-size:small;
 }
-.panel {
-    z-index: 2;
-    background-color: #FFFFFF;
-    padding: 5px;
-    border: 1px solid #999;
-    font-size:small;
-    font-family:"Verdana";
-}
-#nav_tabs {
-    position: fixed;
-    width: 600px;
-    top: 5px;
-    left: 5px;
-    z-index: 2;
-    background-color: #FFFFFF;
-    padding: 5px;
-    border: 1px solid #999;
-    font-size:small;
-}
 .flash {
     width:100%;
     position:fixed;
@@ -40,7 +18,5 @@ html, body {
     padding: 0.5em;
     border: 0px solid #aacbe2;
     text-align:center;
-    z-index: 2;
-    font-size:small;
     color: #ffffff;
 }

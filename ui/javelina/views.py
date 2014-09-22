@@ -28,7 +28,7 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @app.route('/',methods=['GET','POST'])
-def home():
+def search():
     if request.method == 'POST':
         file = request.files['file']
         if file:
@@ -38,8 +38,30 @@ def home():
                 flash(filename + ' was uploaded')
             else:
                 flash(file.filename + ' has an invalid extension')
-            return redirect(url_for('home'))
-    return render_template('home.html', images=os.listdir(app.config['UPLOAD_FOLDER']))
+            return redirect(url_for('search'))
+    return render_template('search.html', images=os.listdir(app.config['UPLOAD_FOLDER']))
+
+@app.route('/db',methods=['GET','POST'])
+def db():
+    if request.method == 'POST':
+        file = request.files['file']
+        if file:
+            if allowed_file(file.filename):
+                filename = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename))
+                file.save(filename)
+                flash(filename + ' was uploaded')
+            else:
+                flash(file.filename + ' has an invalid extension')
+            return redirect(url_for('db'))
+    return render_template('db.html', images=os.listdir(app.config['UPLOAD_FOLDER']))
+
+@app.route('/admin',methods=['GET','POST'])
+def admin():
+    return render_template('admin.html', images=os.listdir(app.config['UPLOAD_FOLDER']))
+
+@app.route('/about',methods=['GET','POST'])
+def about():
+    return render_template('about.html', images=os.listdir(app.config['UPLOAD_FOLDER']))
 
 # see https://pythonhosted.org/Flask-Uploads/
 
