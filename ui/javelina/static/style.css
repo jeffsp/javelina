@@ -16,7 +16,7 @@ html, body {
     position:fixed;
     top:0;
     padding: 0.5em;
-    border: 0px solid #aacbe2;
+    border: 0px;
     text-align:center;
-    color: #ffffff;
+    background-color: #88ee00;
 }

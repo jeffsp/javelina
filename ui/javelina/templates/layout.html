@@ -1,38 +1,29 @@
 <!doctype html>
 
-<html>
-<head>
+<title>Javelina CBIR</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<script type=text/javascript> var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
 
-    <title>Javelina CBIR</title>
+<br>
+<br>
+<br>
+<a href="{{ url_for('search') }}">search</a>
+<br>
+<a href="{{ url_for('db') }}">db</a>
+<br>
+<a href="{{ url_for('admin') }}">admin</a>
+<br>
+<a href="{{ url_for('about') }}">about</a>
+<br>
 
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-    <script type=text/javascript> var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+{% for message in get_flashed_messages() %}
+    <div class="flash">
+    {{ message }}
+    </div>
+{% endfor %}
 
-</head>
+{% block body %}{% endblock %}
 
-<body>
-
-    <br>
-    <a href="{{ url_for('search') }}">search</a>
-    <br>
-    <a href="{{ url_for('db') }}">db</a>
-    <br>
-    <a href="{{ url_for('admin') }}">admin</a>
-    <br>
-    <a href="{{ url_for('about') }}">about</a>
-    <br>
-
-    {% for message in get_flashed_messages() %}
-        <div class="flash">
-        {{ message }}
-        </div>
-    {% endfor %}
-
-    <div id="footer"> Copyright (C) Zetamon Software 2014 </div>
-
-    {% block body %}{% endblock %}
-
-</body>
-</html>
+<div id="footer"> Copyright (C) Zetamon Software 2014 </div>
 
 {# vim: set syntax=jinja : #}
