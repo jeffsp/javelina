@@ -12,6 +12,16 @@
 
 <body>
 
+    <br>
+    <a href="{{ url_for('search') }}">search</a>
+    <br>
+    <a href="{{ url_for('db') }}">db</a>
+    <br>
+    <a href="{{ url_for('admin') }}">admin</a>
+    <br>
+    <a href="{{ url_for('about') }}">about</a>
+    <br>
+
     {% for message in get_flashed_messages() %}
         <div class="flash">
         {{ message }}
