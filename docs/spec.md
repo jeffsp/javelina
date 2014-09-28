@@ -147,6 +147,9 @@ s.update (img);
 > Examples of "unstructured data" may include books, journals, documents, metadata, health records, audio, video, analog
 > data, images, files, and unstructured text such as the body of an e-mail message, Web page, or word-processor document.
 
+[A probabilistic approach to 3-D inference of geons from a 2-D view](http://citeseerx.ist.psu.edu/viewdoc/download;jsessionid=ABE246E451C1D552AE0B0CA6DB8D26F9?doi=10.1.1.38.729&rep=rep1&type=pdfa)
+
+
 From [http://www.physicsforums.com](http://www.physicsforums.com/showthread.php?t=141624)
 
 > There are several reasons why entropy, H, is not equivalent to
