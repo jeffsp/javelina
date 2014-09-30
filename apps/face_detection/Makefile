@@ -13,15 +13,7 @@ waf: version.h
 	waf
 
 version.h: face_detection.cc face_detection.h
-	@echo "Creating version.h..."
-	@echo "#include <string>" > version.h
-	@echo "namespace javelina {" >> version.h
-	@echo "namespace face_detection {" >> version.h
-	@echo -n "std::string version (\"" >> version.h
-	@date +%Y%m%d.%H%M%S | tr -d '\n' >> version.h
-	@echo "\");" >> version.h
-	@echo "}" >> version.h
-	@echo "}" >> version.h
+	../version.sh ./version.h face_detection
 
 run: check
 
