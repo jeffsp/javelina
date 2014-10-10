@@ -20,7 +20,7 @@ from flask import (
     jsonify,
     )
 from werkzeug import secure_filename
-import requests,os
+import requests,os,subprocess
 
 ALLOWED_EXTENSIONS = set(['jpg','png'])
 
@@ -41,42 +41,35 @@ def search():
         file = request.files['file']
         if file:
             if allowed_file(file.filename):
+                # save file
                 filename = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename))
                 file.save(filename)
-                flash(filename + ' was uploaded')
-            else:
-                flash(file.filename + ' has an invalid extension')
-            return redirect(url_for('search'))
-    return render_template('search.html', images=os.listdir(app.config['UPLOAD_FOLDER']))
+                # resize file
+                resized_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'resized', secure_filename(file.filename))
+                print "FILENAME",resized_filename
+                cmd=['convert',filename,'-resize','1024x1024^','-gravity','center','-crop','1024x1024+0+0',resized_filename]
+                print "COMMAND",cmd
+                # this will throw if the shell returns non-zero
+                subprocess.check_call(cmd)
+                flash(file.filename + ' was uploaded')
 
-@app.route('/db',methods=['GET','POST'])
-def db():
-    if request.method == 'POST':
-        file = request.files['file']
-        if file:
-            if allowed_file(file.filename):
-                filename = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename))
-                file.save(filename)
-                flash(filename + ' was uploaded')
+                return render_template('image.html', fn=file.filename)
             else:
                 flash(file.filename + ' has an invalid extension')
-            return redirect(url_for('db'))
-    return render_template('db.html', images=os.listdir(app.config['UPLOAD_FOLDER']))
+    return render_template('search.html')
+
+@app.route('/images',methods=['GET','POST'])
+def images():
+    return render_template('images.html', images=os.listdir(app.config['UPLOAD_FOLDER']+'/resized/'))
+
+@app.route('/image/<fn>')
+def image(fn):
+    return render_template('image.html', fn=fn)
 
 @app.route('/admin',methods=['GET','POST'])
 def admin():
-    return render_template('admin.html', images=os.listdir(app.config['UPLOAD_FOLDER']))
+    return render_template('admin.html')
 
 @app.route('/about',methods=['GET','POST'])
 def about():
-    return render_template('about.html', images=os.listdir(app.config['UPLOAD_FOLDER']))
-
-# see https://pythonhosted.org/Flask-Uploads/
-
-# create upload directory if needed
-if not os.path.exists(app.config['UPLOAD_FOLDER']):
-    os.makedirs(app.config['UPLOAD_FOLDER'])
-
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],filename)
+    return render_template('about.html')
