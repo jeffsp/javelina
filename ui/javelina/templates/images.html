@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<br>
+<ul class=images>
+{% for img in images %}
+    <a href="/image/{{ img }}">
+    <img src="/static/images/resized/{{ img }}" width="300" title="{{ img }}">
+    </a>
+{% else %}
+    <em>No images have been uploaded.</em>
+{% endfor %}
+</ul>
+
+{% endblock %}
+
+{# vim: set syntax=jinja : #}

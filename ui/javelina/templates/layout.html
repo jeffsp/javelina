@@ -7,13 +7,13 @@
 <br>
 <br>
 <br>
-<a href="{{ url_for('search') }}">search</a>
+<a href="{{ url_for('search') }}">Upload</a>
 <br>
-<a href="{{ url_for('db') }}">db</a>
+<a href="{{ url_for('images') }}">Images</a>
 <br>
-<a href="{{ url_for('admin') }}">admin</a>
+<a href="{{ url_for('admin') }}">Admin</a>
 <br>
-<a href="{{ url_for('about') }}">about</a>
+<a href="{{ url_for('about') }}">About</a>
 <br>
 
 {% for message in get_flashed_messages() %}
