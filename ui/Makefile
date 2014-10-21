@@ -27,5 +27,4 @@ deploy:
 	cp -a ./v/ $(DEPLOY_DIR)
 	cp -a ./$(APP_NAME).wsgi $(DEPLOY_DIR)
 	cp -a ./$(APP_NAME)/*.py $(APP_DIR)
-	cp -a ./$(APP_NAME)/static/ $(APP_DIR)
 	cp -a ./$(APP_NAME)/templates/ $(APP_DIR)
