@@ -13,7 +13,6 @@ from flask.ext.gravatar import Gravatar
 # create our application
 app = Flask(__name__)
 app.config.from_object('config')
-#app.config.from_envvar('JAVELINA_SETTINGS_FILE')
 
 from javelina import views
 from javelina import models
