@@ -45,7 +45,7 @@ def search():
                 filename = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(file.filename))
                 file.save(filename)
                 # resize file
-                resized_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'resized', secure_filename(file.filename))
+                resized_filename = os.path.join(app.config['RESIZED_FOLDER'], secure_filename(file.filename))
                 print "FILENAME",resized_filename
                 cmd=['convert',filename,'-resize','1024x1024^','-gravity','center','-crop','1024x1024+0+0',resized_filename]
                 print "COMMAND",cmd
@@ -53,18 +53,18 @@ def search():
                 subprocess.check_call(cmd)
                 flash(file.filename + ' was uploaded')
 
-                return render_template('image.html', fn=file.filename)
+                return render_template('image.html', url_root=request.url_root, folder=app.config['RESIZED_URL'], img=file.filename)
             else:
                 flash(file.filename + ' has an invalid extension')
     return render_template('search.html')
 
 @app.route('/images',methods=['GET','POST'])
 def images():
-    return render_template('images.html', images=os.listdir(app.config['UPLOAD_FOLDER']+'/resized/'))
+    return render_template('images.html', url_root=request.url_root, folder=app.config['RESIZED_URL'], images=os.listdir(app.config['RESIZED_FOLDER']))
 
 @app.route('/image/<fn>')
 def image(fn):
-    return render_template('image.html', fn=fn)
+    return render_template('image.html', url_root=request.url_root, folder=app.config['RESIZED_URL'], img=fn)
 
 @app.route('/admin',methods=['GET','POST'])
 def admin():
