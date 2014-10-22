@@ -10,7 +10,7 @@ import sys
 import cv2
 import numpy as np
 
-usage="sift_features.py <input.jpg> <output.png>"
+usage="sift_features.py <input.jpg>"
 
 def get_keypoints(img):
 
