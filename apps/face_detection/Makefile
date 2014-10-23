@@ -18,12 +18,12 @@ version.h: face_detection.cc face_detection.h
 run: check
 
 fd: waf
-	for i in $$( find ../db/*.jpg ); do  \
+	for i in $$( find ../images/face_detection/*.jpg ); do  \
 		./build/$(BUILD)/face_detection $$i; \
 	done
 
 check:
-	for i in $$( find ../db/*.jpg ); do  \
+	for i in $$( find ../images/face_detection/*.jpg ); do  \
 		./draw_faces.py $$i tmp.png; \
 		display tmp.png; \
 		rm tmp.png; \

@@ -7,6 +7,6 @@
 run: check
 
 check:
-	for i in $$( find images/*.jpg ); do  \
+	for i in $$( find ../images/sift/*.jpg ); do  \
 		./sift_features.py $$i; \
 	done
